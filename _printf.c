@@ -1,20 +1,20 @@
-#include "holberton.h"
+#include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
 
 /**
- * printIdentifiers - prints special characters
+ * printId - prints special characters
  * @next: character after the %
  * @arg: argument for the indentifier
  * Return: the number of characters printed
  * (excluding the null byte used to end output to strings)
  */
 
-int printIdentifiers(char next, va_list arg)
+int printId(char next, va_list arg)
 {
 	int functsIndex;
 
-	identifierStruct functs[] = {
+	idStruct functs[] = {
 		{"c", print_char},
 		{"s", print_str},
 		{"d", print_int},
@@ -28,9 +28,9 @@ int printIdentifiers(char next, va_list arg)
 		{NULL, NULL}
 	};
 
-	for (functsIndex = 0; functs[functsIndex].indentifier != NULL; functsIndex++)
+	for (functsIndex = 0; functs[functsIndex].identifier != NULL; functsIndex++)
 	{
-		if (functs[functsIndex].indentifier[0] == next)
+		if (functs[functsIndex].identifier[0] == next)
 			return (functs[functsIndex].printer(arg));
 	}
 	return (0);
@@ -50,7 +50,7 @@ int printIdentifiers(char next, va_list arg)
 int _printf(const char *format, ...)
 {
 	unsigned int i;
-	int identifierPrinted = 0, charPrinted = 0;
+	int idPrinted = 0, charPrinted = 0;
 	va_list arg;
 
 	va_start(arg, format);
@@ -75,13 +75,13 @@ int _printf(const char *format, ...)
 		if (format[i + 1] == '\0')
 			return (-1);
 
-		identifierPrinted = printIdentifiers(format[i + 1], arg);
-		if (identifierPrinted == -1 || identifierPrinted != 0)
+		IdPrinted = printId(format[i + 1], arg);
+		if (idPrinted == -1 || id != 0)
 			i++;
-		if (identifierPrinted > 0)
-			charPrinted += identifierPrinted;
+		if (idPrinted > 0)
+			charPrinted += idPrinted;
 
-		if (identifierPrinted == 0)
+		if (idPrinted == 0)
 		{
 			_putchar('%');
 			charPrinted++;
